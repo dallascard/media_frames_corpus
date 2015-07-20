@@ -66,7 +66,7 @@ Firefox will occassionally crash or hang. If this happens (if the last timestamp
 
 Once all files have been downloaded, the second step is to run:
 
-> python process_downloads.py <issue>
+> python process_downloads.py ISSUE
 
 again replacing ISSUE with the appropriate issue name, as above.
 
