@@ -54,9 +54,9 @@ This repository contains the metadata for all articles in the Media Frames Corpu
 
 Assuming you have access, download this repository and unzip it anywhere. Then, in the media_frames_corpus directory, run:
 
-> python download_articles.py <issue>
+> python download_articles.py ISSUE
 
-where <issue> must be 'immigration', 'smoking', or 'samesex'.
+where ISSUE must be "immigration", "smoking", or "samesex".
 
 This script will open a Firefox browser and begin downloading all the relevant articles for the corresponding issue, first in large batches (which will be parsed into individual articles), and then individually (to get the ones missing from the batch downloads). **NOTE THAT THIS WILL TAKE SEVERAL HOURS**.
 
@@ -68,7 +68,7 @@ Once all files have been downloaded, the second step is to run:
 
 > python process_downloads.py <issue>
 
-again replacing <issue> with the appropriate issue name, as above.
+again replacing ISSUE with the appropriate issue name, as above.
 
 This second script will do some validation of the downloaded files, and write the text to indiviudal files in the articles/ directory, with names that match the dictionary keys in the json files in the annotations/ directory.
 
