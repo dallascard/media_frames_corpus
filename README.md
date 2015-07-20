@@ -6,6 +6,19 @@
     Philip Resnik (UMIACS, University of Maryland)
     Noah A. Smith (Computer Science and Engineering, University of Washington)
 
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 This is a README for a repository containing annotations for the Media Frames Corpus
 ====================================================================================
@@ -16,7 +29,7 @@ This is a README for a repository containing annotations for the Media Frames Co
 ===============
 - Python 2.7
 - python modules: codecs, csv, datetime, glob, json, optparse, os, numpy, random, re, selenium, string, sys, time, unicodedata 
-- Firefox
+- Firefox 
 - access to Lexis-Nexis academic
 
 2. Contents
