@@ -63,7 +63,7 @@ This is a README for a repository containing annotations for the Media Frames Co
 3. Obtaining the data
 =====================
 
-This repository contains the metadata for all articles in the Media Frames Corpus (version 1), along with the beginning and end (and associated framing dimension) of all annotated spans of text. All of this information is in a single JSON file in the annotations/ directory, with one file for each issue (immigraiton, smoking, and same-sex marriage). To obtain the actual articles, however, it is necessary to have access to Lexis-Nexis acadmic.
+This repository contains the metadata for all articles in the Media Frames Corpus (version 1), along with the beginning and end (and associated framing dimension) of all annotated spans of text. All of this information is in a single JSON file in the annotations/ directory, with one file for each issue (immigraiton, smoking, and same-sex marriage). To obtain the actual articles, however, it is necessary to have access to Lexis-Nexis academic.
 
 Assuming you have access, download this repository and unzip it anywhere. Then, in the media_frames_corpus directory, run:
 
