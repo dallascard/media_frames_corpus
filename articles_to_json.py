@@ -22,6 +22,8 @@ def main():
 	for f in files:
 		basename = os.path.basename(f)
 		case_id = os.path.splitext(basename)[0]
+		if '_' in case_id:
+			case_id = case_id.split('_')[0]
 
 		with codecs.open(f, 'r', encoding='utf-8') as input_file:
 			text = input_file.read()
