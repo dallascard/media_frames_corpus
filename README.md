@@ -1,108 +1,86 @@
-    Media Frames Corpus (version 1)
-    Copyright (C) 2015
-    Dallas Card (Machine Learning Department, Carnegie Mellon University),
-    Amber E. Boydstun (Department of Political Science, University of California, Davis),
-    Justin H. Gross (Department of Political Science, University of Massachusetts, Amherst)
-    Philip Resnik (UMIACS, University of Maryland)
-    Noah A. Smith (Computer Science and Engineering, University of Washington)
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-This is a README for a repository containing annotations for the Media Frames Corpus
+Media Frames Corpus v2.0
 ====================================================================================
-
 
 
 1. Requirements
 ===============
-- Python 2.7
-- python modules: codecs, csv, datetime, glob, json, optparse, os, numpy, random, re, selenium, string, sys, time, unicodedata 
-- Firefox 
+- Python 2.7 with selenium module installed (via pip)
+- Chrome browser
+- [Chrome Driver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 - access to Lexis-Nexis academic
 
-2. Contents
-===========
 
-
-- download_articles.py
-    The main script to run to download the articles
-- process_downloads.py
-    The second script to run; once all articles have been downloaded, this will convert them to their proper form
-- bulk_downloads.py
-    A secondary script to assemble queries to download articles in bulk
-- parse_LN_to_JSON.py
-    A secondary script to pull the relevant information out of files downloaded from Lexis-Nexis
-- sources.py
-    A dictionary of the id numbers of various newspapers
-- annotations/
-    A directory containing one file for each issue, with all annotations and metadata
-- indices/
-    A directory containing two files for each issue, with the relevant information about filenames
-- temp/
-    A temporary directory which will be created to hold the bulk files to be downloaded from Lexis Nexis
-- downloads/
-    A directory which will be created that will contain all of the articles to downloaded from Lexis-Nexis
-- articles/
-    A directory which will be created where the final copies of each article will end up
-- README.md
-    This file
-
-
-3. Obtaining the data
+2. Obtaining the articles
 =====================
 
-This repository contains the metadata for all articles in the Media Frames Corpus (version 1), along with the beginning and end (and associated framing dimension) of all annotated spans of text. All of this information is in a single JSON file in the annotations/ directory, with one file for each issue (immigraiton, smoking, and same-sex marriage). To obtain the actual articles, however, it is necessary to have access to Lexis-Nexis acadmic.
+This repository contains the metadata for all articles in the Media Frames Corpus (version 2), along with the beginning and end (and associated framing dimension) of all annotated spans of text. All of this information is in a single JSON file in the annotations/ directory, with one file for each issue (immigration, smoking, and same-sex marriage). To obtain the actual articles, however, it is necessary to have access to Lexis-Nexis academic.
 
-Assuming you have access, download this repository and unzip it anywhere. Then, in the media_frames_corpus directory, run:
+To begin, download a copy of the chrome driver, and place it in a subdirectory of this repo called `chrome`.
 
-> python download_articles.py ISSUE
+Second, if you do not already have it, install `selenium` using pip:
 
-where ISSUE must be "immigration", "smoking", or "samesex".
+	> pip install selenium
 
-This script will open a Firefox browser and begin downloading all the relevant articles for the corresponding issue, first in large batches (which will be parsed into individual articles), and then individually (to get the ones missing from the batch downloads). **NOTE THAT THIS WILL TAKE SEVERAL HOURS**.
+Then, in the repo directory, run:
 
-The script will then perform a few minor manipulations (adding spaces, etc) to ensure that the downloaded text matches the text that was annotated.
+	> python get_news_articles.py config_file.json
+	
+where `config_file.json` is one of the provided configuration files (e.g. `immigration_config.json`, etc.)
 
-Firefox will occassionally crash or hang. If this happens (if the last timestamp is more than a few minutes old), simply cancel the excecution and re-run the script. It will pick up from wherever it left off. Once all articles have been downloaded, the last line printed should be "All files downloaded".
+If your chrome driver is located elsewhere, you can specify it with the -c option, i.e.:
+
+	> python get_news_articles.py config_file.json -c /path/to/chromedriver
+
+This script will open a Chrome browser window and begin downloading all the relevant articles for the corresponding issue. This requires that you have access to Lexis-Nexis, and it may take a few hours per issue.
 
 Once all files have been downloaded, the second step is to run:
 
-> python process_downloads.py ISSUE
+	> python parse_LN_to_JSON.py config_file.json
 
-again replacing ISSUE with the appropriate issue name, as above.
+which splits the downloads up into individual articles, and extracts the structured information (author, title, etc.)
 
-This second script will do some validation of the downloaded files, and write the text to indiviudal files in the articles/ directory, with names that match the dictionary keys in the json files in the annotations/ directory.
+Third, run:
 
-The annotations are specified with a coder name (anonymized), a code (corresponding to a framing dimension), a coding round, and a start and end for the annotated span (see reference below for additional details). The codes are mapped to names of framing dimensions in the codes.json file in the annotations/ directory. "start" is the first character using 0-based indexing, and "end" is the last plus one. In python, for example, if the text of the article were loaded into a variable called "text", the annotated span could be extracted using text[start:end]. 
+	> python process_JSON_files.py config_file.json
+
+This script recombines the information from each article in such a way so as to match the articles as they were annotated, and then recombines all the articles into a single JSON file. 
+
+Finally, run:
+
+	> python combine_text_and_annotations.py config_file.json
+	
+This will produce a single file in the output directory which contains the annotations and text for each article.
+
+The annotations are specified with a coder name (anonymized), a code (corresponding to a framing dimension), and a start and end for the annotated span (see reference below for additional details). The codes are mapped to names of framing dimensions and tones in the `codes.json` file in the `annotations` directory. "start" is the first character using 0-based indexing, and "end" is the last plus one. In python, for example, if the text of the article were loaded into a variable called "text", the annotated span could be extracted using `text[start:end]`. 
 
 Some users may need to modify the website address needed to access Lexis-Nexis. The default is http://www.lexisnexis.com 
 
 To specify a replacement for this address (upon which all URLs will be built), use the -u option in download_articles.py. For example,
 
-> python download_articles.py immigration -u http://www.lexisnexis.com.libproxy.lib.unc.edu
+	> python get_news_articles.py immigration_config.json -u http://www.lexisnexis.com.libproxy.lib.unc.edu
+
+
+3. Revision History
+=======
+
+5/Dec/2016:
+
+- v2.0 of the MFC provides a new set of annotations which entirely replaces those from v1.0.
+- The annotations scheme remains the same, except that the overall Tone of the article (pro, neutral, anti) has been added. Also, for these annotations, the annotators resolved all conflicts on the primary frame and tone of each article. (Note that some articles only have annotations for framing or tone, but not both).
+- Finally, the browser was switched from Firefox to Chrome, and the download process sped up.
+- data format has changed slightly
+- Note that annotator IDs are NOT the same across issues
 
 
 
-4. Further Reading
+4. References
 ==================
-If you use this corpus, please cite the following paper:
+If you make use of this corpus, please cite the following paper:
 
-Card D, Boydstun AE, Gross JH, Resnik P, Smith NA. The Media Frames Corpus: Annotations of Frames Across Issues. In Proceedings of the Annual Meeting of the Association for Computational Linguistics (ACL 2015), Beijing, China, July 2015. 
-http://www.cs.cmu.edu/~dcard/resources/card.acl2015.pdf
+Card D, Boydstun AE, Gross JH, Resnik P, Smith NA. The Media Frames Corpus: Annotations of Frames Across Issues. In Proceedings of the Annual Meeting of the Association for Computational Linguistics (ACL 2015), Beijing, China, July 2015. [http://www.cs.cmu.edu/~dcard/resources/card.acl2015.pdf](http://www.cs.cmu.edu/~dcard/resources/card.acl2015.pdf)
+
 
 
 5. Contact
 ==========
-If you find any bugs or have questions, please email Dallas Card (dcard@cmu.edu).
+If you find any bugs or have questions, please email Dallas Card (dcard at cmu dot edu).

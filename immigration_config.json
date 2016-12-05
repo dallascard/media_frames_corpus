@@ -1,0 +1,133 @@
+{
+  "name": "immigration",
+  "search terms": [
+    [
+      ["IMMIGRATION, CITIZENSHIP DISPLACEMENT"],
+      90
+    ], 
+    [
+      ["IMMIGRATION LAW"],
+      90
+    ], 
+    [
+      ["FOREIGN LABOR"],
+      90
+    ],
+    [
+      ["IMMIGRATION"],
+      90
+    ], 
+    [
+      ["ILLEGAL IMMIGRANTS"],
+      90
+    ], 
+    [
+      ["IMMIGRANT DETENTION CENTERS"],
+      90
+    ], 
+    [
+      ["ALIEN SMUGGLING"],
+      90
+    ], 
+    [
+      ["INADMISSIBILITY OF IMMIGRANTS"],
+      90
+    ], 
+    [
+      ["US STATE IMMIGRATION LAW"],
+      90
+    ]
+  ],
+  "newspaper csis": [
+    144576,
+    6742,
+    11810,
+    313960,
+    313961,
+    8075,
+    409005,
+    278130,
+    8213,
+    11063,
+    247189,
+    8379,
+    879740,
+    151550,
+    144565
+  ],
+  "first date": {
+    "year": 1980,
+    "month": 1,
+    "day": 1
+  },
+  "last date": {
+    "year": 2012,
+    "month": 12,
+    "day": 31
+  },
+  "skip_list": [
+    "Immigration1.0-30344",
+    "Immigration1.0-38177",
+    "Immigration1.0-40400",
+    "Immigration1.0-11751",
+    "Immigration1.0-11440",
+    "Immigration1.0-32282",
+    "Immigration1.0-31889",
+    "Immigration1.0-11516",
+    "Immigration1.0-14950",
+    "Immigration1.0-14833",
+    "Immigration1.0-592",
+    "Immigration1.0-29731",
+    "Immigration1.0-29351",
+    "Immigration1.0-41121",
+    "Immigration1.0-33263",
+    "Immigration1.0-10763",
+    "Immigration1.0-12661",
+    "Immigration1.0-10353",
+    "Immigration1.0-10499",
+    "Immigration1.0-12621",
+    "Immigration1.0-9270",
+    "Immigration1.0-30220",
+    "Immigration1.0-41294",
+    "Immigration1.0-12806",
+    "Immigration1.0-32502",
+    "Immigration1.0-37152", 
+    "Immigration1.0-37528", 
+    "Immigration1.0-10015", 
+    "Immigration1.0-12996", 
+    "Immigration1.0-37319", 
+    "Immigration1.0-37270", 
+    "Immigration1.0-37679", 
+    "Immigration1.0-12353", 
+    "Immigration1.0-11666", 
+    "Immigration1.0-12601", 
+    "Immigration1.0-39878", 
+    "Immigration1.0-15477", 
+    "Immigration1.0-37415", 
+    "Immigration1.0-10169", 
+    "Immigration1.0-36896", 
+    "Immigration1.0-12968", 
+    "Immigration1.0-13561", 
+    "Immigration1.0-14383", 
+    "Immigration1.0-37498", 
+    "Immigration1.0-10819", 
+    "Immigration1.0-10005", 
+    "Immigration1.0-37877", 
+    "Immigration1.0-13831", 
+    "Immigration1.0-39790", 
+    "Immigration1.0-10407", 
+    "Immigration1.0-33322", 
+    "Immigration1.0-14574", 
+    "Immigration1.0-12244", 
+    "Immigration1.0-27640", 
+    "Immigration1.0-12563", 
+    "Immigration1.0-14479", 
+    "Immigration1.0-9724", 
+    "Immigration1.0-9723", 
+    "Immigration1.0-15763", 
+    "Immigration1.0-38805", 
+    "Immigration1.0-14614", 
+    "Immigration1.0-11248"
+    ],
+  "n_expected": 5399
+}

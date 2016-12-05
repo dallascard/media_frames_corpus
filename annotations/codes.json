@@ -44,5 +44,10 @@
   "15.0": "Other", 
   "15.1": "Other headline", 
   "15.2": "Other primary",
-  "16.2": "Irrelevant"
+  "16.2": "Irrelevant",
+  "17.4": "Explicit Pro",
+  "17.35": "Implicit Pro",
+  "18.3": "Neutral",
+  "19.35": "Implicit Anti",
+  "19.4": "Explicit Anti"
 }
