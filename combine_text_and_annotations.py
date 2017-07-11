@@ -55,10 +55,11 @@ def main():
             title = str(data['title']).encode('ascii', 'ignore')
             byline = str(data['byline']).encode('ascii', 'ignore')
             section = str(data['section']).encode('ascii', 'ignore')
+            irrelevant = data['irrelevant']
             f_annotations = data['annotations']['framing']
             t_annotations = data['annotations']['tone']
             i_annotations = data['annotations']['irrelevant']
-            n_annotations = len(f_annotations) + len(t_annotations) + len(i_annotations)
+            n_annotations = len(f_annotations) + len(t_annotations)
             if n_annotations == 0:
                 n_empty += 1
             length = data['length']
@@ -72,7 +73,7 @@ def main():
             else:
                 csi_matches = []
 
-            if year >= 1980 and n_annotations > 0:
+            if year >= 1980 and (irrelevant or n_annotations > 0):
                 found = False
                 for match in csi_matches:
                     if title == match['title'] and byline == match['byline'] and length == match['length']:
@@ -91,16 +92,14 @@ def main():
                         output[key]['section'] = section
                         output[key]['page'] = page
                         output[key]['text'] = text
-                        output[key]['annotations'] = {'framing': {}, 'tone': {}, 'irrelevant': {}}
+                        output[key]['irrelevant'] = irrelevant
+                        output[key]['annotations'] = {'framing': {}, 'tone': {}}
                         # anonymize the coder names and copy over the annotations
                         for coder in f_annotations.keys():
                             output[key]['annotations']['framing'][coder] = f_annotations[coder]
 
                         for coder in t_annotations.keys():
                             output[key]['annotations']['tone'][coder] = t_annotations[coder]
-
-                        for coder in i_annotations.keys():
-                            output[key]['annotations']['irrelevant'][coder] = i_annotations[coder]
 
                 if len(csi_matches) == 0:
                     n_unmatched += 1
