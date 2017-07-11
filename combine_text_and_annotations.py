@@ -98,6 +98,10 @@ def main():
 
                         for coder in t_annotations.keys():
                             output[key]['annotations']['tone'][coder] = t_annotations[coder]
+
+                        for coder in i_annotations.keys():
+                            output[key]['annotations']['irrelevant'][coder] = i_annotations[coder]
+
                 if len(csi_matches) == 0:
                     n_unmatched += 1
                 elif not found:
