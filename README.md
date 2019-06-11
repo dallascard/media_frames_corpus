@@ -1,3 +1,7 @@
+## NOTE: This repo has been deprecated, due to changes to the Lexis-Nexis interface.
+
+
+
 Media Frames Corpus v2.0
 ====================================================================================
 
